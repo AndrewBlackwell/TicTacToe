@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     private JButton[][] buttons;
-    private TicTacToe game;
+    private Logic game;
 
     public GUI() {
-        game = new TicTacToe();
+        game = new Logic();
         buttons = new JButton[3][3];
 
         // Set up the GUI
@@ -40,13 +40,13 @@ public class GUI extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (game.isGameOver() || game.getWinner() != TicTacToe.EMPTY) {
+            if (game.isGameOver() || game.getWinner() != Logic.EMPTY) {
                 return;
             }
 
             if (game.makeMove(row, col)) {
-                buttons[row][col].setText(game.getCurrentPlayer() == TicTacToe.X ? "X" : "O");
-                if (game.getWinner() != TicTacToe.EMPTY) {
+                buttons[row][col].setText(game.getCurrentPlayer() == Logic.X ? "X" : "O");
+                if (game.getWinner() != Logic.EMPTY) {
                     JOptionPane.showMessageDialog(GUI.this, "Player " + game.getWinner() + " wins!");
                 } else if (game.isGameOver()) {
                     JOptionPane.showMessageDialog(GUI.this, "It's a tie!");
